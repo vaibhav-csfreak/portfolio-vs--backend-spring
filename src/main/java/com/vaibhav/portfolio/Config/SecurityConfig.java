@@ -12,7 +12,7 @@ public class SecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable()) // Disable CSRF (if needed)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/experiences").permitAll() // Allow access to /experiences
+                        .requestMatchers("/experiences", "/projects").permitAll() // Allow access to /experiences
                         .anyRequest().authenticated() // Require authentication for other endpoints
                 )
                 .build();
