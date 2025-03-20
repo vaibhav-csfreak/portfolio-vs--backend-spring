@@ -1,5 +1,5 @@
-# Build stage (using JDK 23 Early Access)
-FROM eclipse-temurin:23_35-jdk-jammy AS build
+FROM openjdk:23-ea
+# Rest of your Dockerfile remains the same
 RUN apt-get update && apt-get install -y maven
 COPY . .
 RUN mvn clean package -DskipTests
