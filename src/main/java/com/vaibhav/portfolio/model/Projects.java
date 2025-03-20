@@ -6,12 +6,14 @@ public class Projects {
     private String projectTitle;
     private String projectLink;
     private String projectImage;
+    private String description;
     private List<String> technologies;
 
-    public Projects(String projectTitle, String projectLink, String projectImage, List<String> technologies) {
+    public Projects(String projectTitle, String projectLink, String projectImage, String description, List<String> technologies) {
         this.projectTitle = projectTitle;
         this.projectLink = projectLink;
         this.projectImage = projectImage;
+        this.description = description;
         this.technologies = technologies;
     }
 
@@ -25,6 +27,10 @@ public class Projects {
 
     public String getProjectImage() {
         return projectImage;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public List<String> getTechnologies() {

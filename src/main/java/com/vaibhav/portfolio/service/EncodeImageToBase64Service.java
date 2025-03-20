@@ -20,7 +20,6 @@ public class EncodeImageToBase64Service {
             byte[] imageBytes = Files.readAllBytes(resource.getFile().toPath());
             return "data:image/png;base64," + Base64.getEncoder().encodeToString(imageBytes);
         } catch (Exception e) {
-            System.out.println("Error loading image: " + e.getMessage());
             return "";
         }
     }
