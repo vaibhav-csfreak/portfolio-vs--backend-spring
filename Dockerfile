@@ -1,9 +1,10 @@
-FROM openjdk:23-jdk AS build
+FROM maven:3.9.9-eclipse-temurin-21 AS build
+WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
 
-FROM openjdk:23-jdk
-COPY --from=build /target/portfolio-0.0.1-SNAPSHOT.jar portfolio.jar
+FROM eclipse-temurin:21-jdk-slim
+WORKDIR /app
+COPY --from=build /app/target/portfolio-0.0.1-SNAPSHOT.jar portfolio.jar
 EXPOSE 8080
-entrypoint ["java","-jar","portfolio.jar"]
-
+ENTRYPOINT ["java", "-jar", "portfolio.jar"]
