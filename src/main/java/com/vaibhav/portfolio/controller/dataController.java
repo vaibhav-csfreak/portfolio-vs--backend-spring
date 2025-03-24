@@ -8,7 +8,8 @@ import com.vaibhav.portfolio.service.TelegramNotifyService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -29,9 +30,11 @@ public class dataController {
     }
 
     @GetMapping(path = "/")
-    public String notifyTelegram(@RequestParam(defaultValue = "API Hit Detected") String message) {
-        telegramNotifyService.sendMessage(message);
-        return "Notification sent to Telegram!";
+    public String trackVisit(HttpServletRequest request) {
+        String visitorIp = request.getRemoteAddr();
+        String message = "New visitor on your site! IP: " + visitorIp;
+        telegramNotifyService.sendTelegramNotification(message);
+        return "Visit tracked!";
     }
 
     @GetMapping(path = "/projects")
