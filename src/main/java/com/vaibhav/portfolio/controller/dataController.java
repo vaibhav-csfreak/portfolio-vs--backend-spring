@@ -30,11 +30,10 @@ public class dataController {
     }
 
     @GetMapping(path = "/")
-    public String trackVisit(HttpServletRequest request) {
+    public void trackVisit(HttpServletRequest request) {
         String visitorIp = request.getRemoteAddr();
         String message = "New visitor on your site! IP: " + visitorIp;
         telegramNotifyService.sendTelegramNotification(message);
-        return "Visit tracked!";
     }
 
     @GetMapping(path = "/projects")
