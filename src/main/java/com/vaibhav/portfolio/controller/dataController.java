@@ -31,10 +31,14 @@ public class dataController {
 
     @GetMapping(path = "/")
     public void trackVisit(HttpServletRequest request) {
+        String userAgent = request.getHeader("User-Agent");
+        String requestUrl = request.getRequestURL().toString();
         String visitorIp = request.getRemoteAddr();
-        String message = "New visitor on your site! IP: " + visitorIp;
+        String message = String.format("New visitor on your site!\nIP: %s\nUser-Agent: %s\nVisited URL: %s",
+                visitorIp, userAgent, requestUrl);
         telegramNotifyService.sendTelegramNotification(message);
     }
+
 
     @GetMapping(path = "/projects")
     public List<Projects> getProjects(){
